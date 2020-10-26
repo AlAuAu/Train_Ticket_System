@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.UserDAO">
+    <!--save-->
+    <insert id="save" parameterType="User" >
+        insert into User(user_tel,user_name,user_id,user_pwd) values(#{user_tel},#{user_name},#{user_id},#{user_pwd})
+    </insert>
+    <select id="findByUserTel" parameterType="String" resultType="User">
+        select user_tel,user_pwd,user_name,user_id
+        from User where user_tel=#{user_tel}
+    </select>
+</mapper>

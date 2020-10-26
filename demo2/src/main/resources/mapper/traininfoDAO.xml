@@ -1,0 +1,9 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.traininfoDAO">
+    <!--search-->
+    <select id="searchTrainInfo" parameterType="String" resultType="traininfo">
+        select a.train_id as train_id, train_name, train_type,a.stop_id as start_id, b.stop_id as end_id, a.city_name as start_city_name,b.city_name as end_city_name,a.station_name as start_station_name, b.station_name as end_station_name, a.arrival_time as start_time, b.arrival_time as end_time,a.start.arrival_date as start_date
+        from stopstation as a,stopstation as b,train as c
+        where a.city_name=#{start_city_name} and b.city_name=#{end_city_name} and a.train_id=b.train_id and b.train_id=c.train_id and a.arrival_date=#{start_date}
+    </select>
+</mapper>

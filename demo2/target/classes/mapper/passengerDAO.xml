@@ -1,0 +1,19 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.passengerDAO">
+    <!--save-->
+    <insert id="savePassenger" parameterType="passenger" >
+        INSERT INTO passenger(passenger_cardid,passenger_name,passenger_type,passenger_tel,student_id) VALUES(#{passenger_cardid},#{passenger_name},#{passenger_type},#{passenger_tel},#{student_id})
+    </insert>
+    <!--searchByCardID-->
+    <select id="searchByCardID" parameterType="String" resultType="passenger">
+        SELECT    passenger_id , passenger_cardid , passenger_name , passenger_type , passenger_tel , student_id
+        FROM passenger
+        where passenger_cardid=#{passenger_cardid}
+    </select>
+
+    <!--deleteByID-->
+    <delete id="deleteByID" parameterType="String">
+        delete from passenger where passenger_id=#{passenger_id}
+    </delete>
+
+</mapper>

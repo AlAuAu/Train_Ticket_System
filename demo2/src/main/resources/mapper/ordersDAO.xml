@@ -1,0 +1,8 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.ordersDAO">
+    <!--save-->
+    <insert id="saveOrders" parameterType="orders"  useGeneratedKeys="true" keyProperty="order_id">
+        insert INTO orders(order_id,user_tel,passenger_id,train_id,seat_id,order_flag,order_date,start_stop_id,end_stop_id,train_date,seat_type) values (#{order_id},#{user_tel},#{passenger_id},#{train_id},#{seat_id},#{order_flag},#{order_date},#{start_stop_id},#{end_stop_id},#{train_date},#{seat_type})
+    </insert>
+
+</mapper>

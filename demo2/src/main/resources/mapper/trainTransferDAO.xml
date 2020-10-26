@@ -1,0 +1,9 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.trainTransferDAO">
+    <!--search-->
+    <select id="searchTransation" parameterType="String" resultType="trainTransfer">
+        select a.arrival_date as start_date,a.arrival_time as start_time,a.station_name as start_station_name,b.station_name as transfer_station,d.station_name as end_station_name,d.arrival_time as end_time,a.city_name as start_city_name,d.city_name as end_city_name,e.train_name as train_name1,f.train_name as train_name2
+        from stopstation as a, stopstation as b, stopstation as c, stopstation as d, train as e, train as f
+        where a.city_name = #{start_city_name} and d.city_name = #{end_city_name} and a.train_id = b.train_id and b.station_name = c.station_name and c.train_id = d.train_id and b.train_id <![CDATA[ <> ]]> c.train_id and a.stop_id <![CDATA[ < ]]> b.stop_id and c.stop_id <![CDATA[ < ]]> d.stop_id and a.arrival_date=#{start_date} and ((b.arrival_time <![CDATA[ < ]]>c.arrival_time and b.arrival_date <![CDATA[ <= ]]>c.arrival_date) or (b.arrival_date <![CDATA[ > ]]>c.arrival_date and b.arrival_time <![CDATA[ > ]]>c.arrival_time)) and a.train_id=e.train_id and d.train_id=f.train_id
+    </select>
+</mapper>

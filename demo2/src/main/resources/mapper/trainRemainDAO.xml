@@ -1,0 +1,10 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.trainRemainDAO">
+    <!--search-->
+    <select id="countTicket" parameterType="String" resultType="trainRemain">
+        select t.train_id,s.seat_type,count(s.seat_id) as seat_count
+        from train as t, seat as s
+        where t.train_id = #{train_id} and t.train_id = s.train_id and s.seat_id not in (select seat_id from orders where train_id = #{train_id} and train_date = #{train_date} and ((start_stop_id<![CDATA[ <= ]]>#{start_stop_id} and end_stop_id<![CDATA[ > ]]>#{start_stop_id}) or (start_stop_id<![CDATA[ > ]]>#{start_stop_id} and start_stop_id<![CDATA[ < ]]>#{end_stop_id})))
+        GROUP BY t.train_id,s.seat_type
+    </select>
+</mapper>

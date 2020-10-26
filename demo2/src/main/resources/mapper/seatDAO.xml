@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.seatDAO">
+    <!--search-->
+    <select id="searchSeat" parameterType="String" resultType="seat">
+        select t.train_id as train_id, s.seat_id as seat_id, s.seat_type as seat_type, s.seat_location as seat_location, s.seat_price as seat_price,s.seat_carriage as seat_carraige
+        from train as t, seat as s
+        where t.train_id = #{train_id} and t.train_id = s.train_id and s.seat_type=#{seat_type} and s.seat_id not in (select seat_id from orders where train_id = #{train_id} and train_date = #{train_date} and ((start_stop_id <![CDATA[ <= ]]> #{start_stop_id} and end_stop_id <![CDATA[ > ]]> #{start_stop_id}) or (start_stop_id <![CDATA[ > ]]> #{start_stop_id} and start_stop_id <![CDATA[ < ]]> #{end_stop_id})))
+    </select>
+    <!--searchID-->
+    <select id="searchID" parameterType="String" resultType="String">
+        select train_id
+        from seat
+        where train_id=#{train_id} and seat_type=#{seat_type} and seat_location=#{seat_location} and seat_carriage=#{seat_carriage}
+    </select>
+</mapper>

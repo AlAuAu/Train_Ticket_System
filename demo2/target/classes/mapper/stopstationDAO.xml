@@ -1,0 +1,12 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper  namespace="com.example.demo.dao.stopstationDAO">
+
+
+    <!--searchByIDs-->
+    <select id="searchByIDs" parameterType="String" resultType="stopstation">
+        SELECT  train_id, stop_id, city_name, station_name, arrival_time, stop_time,arrival_date
+        FROM stopstation
+        where train_id=#{train_id} and stop_id=#{stop_id}
+    </select>
+
+</mapper>
